@@ -1,0 +1,78 @@
+Vagrant.configure("2") do |config|
+
+  config.vm.define "node1" do |node1|
+    node1.vm.box = "hashicorp-education/ubuntu-24-04"
+    node1.vm.hostname = "master.local"
+    node1.vm.network "private_network", ip: "192.168.3.20"
+    node1.vm.provider "virtualbox" do |vb|   
+      # Provisioning con Shell
+      node1.vm.provision "shell", inline: <<-SHELL
+        sudo apt update
+        sudo apt install -y docker.io
+        sudo systemctl start docker
+        sudo systemctl enable docker
+
+        # Crea lo script per avviare e fermare il container
+        echo '#!/bin/bash' | sudo tee /usr/local/bin/docker_start_stop.sh
+        echo 'CONTAINER_NAME="echo-server"' | sudo tee -a /usr/local/bin/docker_start_stop.sh
+        echo 'IMAGE_NAME="ealen/echo-server"' | sudo tee -a /usr/local/bin/docker_start_stop.sh
+
+        # Aggiungi il controllo per avviare o riavviare il container
+        echo 'if ! sudo docker ps -a --format "{{.Names}}" | grep -q $CONTAINER_NAME; then' | sudo tee -a /usr/local/bin/docker_start_stop.sh
+        echo '    sudo docker run -d --name $CONTAINER_NAME $IMAGE_NAME' | sudo tee -a /usr/local/bin/docker_start_stop.sh
+        echo 'else' | sudo tee -a /usr/local/bin/docker_start_stop.sh
+        echo '    sudo docker start $CONTAINER_NAME' | sudo tee -a /usr/local/bin/docker_start_stop.sh
+        echo 'fi' | sudo tee -a /usr/local/bin/docker_start_stop.sh
+
+        # Aggiungi il resto del codice per fermare e rimuovere il container
+        echo 'sleep 60' | sudo tee -a /usr/local/bin/docker_start_stop.sh
+        echo 'sudo docker stop $CONTAINER_NAME' | sudo tee -a /usr/local/bin/docker_start_stop.sh
+
+        # Rendi eseguibile lo script
+        sudo chmod +x /usr/local/bin/docker_start_stop.sh
+
+        # Aggiungi cron job nei minuti pari
+        (sudo crontab -l 2>/dev/null; echo "0-59/2 * * * * /usr/local/bin/docker_start_stop.sh") | sudo crontab -
+      SHELL
+    end
+  end
+
+  config.vm.define "node2" do |node2|
+    node2.vm.box = "hashicorp-education/ubuntu-24-04"
+    node2.vm.hostname = "master2.local"
+    node2.vm.network "private_network", ip: "192.168.3.21"
+    node2.vm.provider "virtualbox" do |vb|
+     
+      # Provisioning con Shell
+      node2.vm.provision "shell", inline: <<-SHELL
+        sudo apt update
+        sudo apt install -y docker.io
+        sudo systemctl start docker
+        sudo systemctl enable docker
+
+        # Crea lo script per avviare e fermare il container
+        echo '#!/bin/bash' | sudo tee /usr/local/bin/docker_start_stop.sh
+        echo 'CONTAINER_NAME="echo-server"' | sudo tee -a /usr/local/bin/docker_start_stop.sh
+        echo 'IMAGE_NAME="ealen/echo-server"' | sudo tee -a /usr/local/bin/docker_start_stop.sh
+
+        # Aggiungi il controllo per avviare o riavviare il container
+        echo 'if ! sudo docker ps -a --format "{{.Names}}" | grep -q $CONTAINER_NAME; then' | sudo tee -a /usr/local/bin/docker_start_stop.sh
+        echo '    sudo docker run -d --name $CONTAINER_NAME $IMAGE_NAME' | sudo tee -a /usr/local/bin/docker_start_stop.sh
+        echo 'else' | sudo tee -a /usr/local/bin/docker_start_stop.sh
+        echo '    sudo docker start $CONTAINER_NAME' | sudo tee -a /usr/local/bin/docker_start_stop.sh
+        echo 'fi' | sudo tee -a /usr/local/bin/docker_start_stop.sh
+
+        # Aggiungi il resto del codice per fermare e rimuovere il container
+        echo 'sleep 60' | sudo tee -a /usr/local/bin/docker_start_stop.sh
+        echo 'sudo docker stop $CONTAINER_NAME' | sudo tee -a /usr/local/bin/docker_start_stop.sh
+
+        # Rendi eseguibile lo script
+        sudo chmod +x /usr/local/bin/docker_start_stop.sh
+
+        # Aggiungi cron job nei minuti dispari
+        (sudo crontab -l 2>/dev/null; echo "1-59/2 * * * * /usr/local/bin/docker_start_stop.sh") | sudo crontab -
+      SHELL
+    end
+  end
+
+end

@@ -1,1 +1,7 @@
-Questo script stampa "hello" e mostra il codice di uscita 0 del comando `echo`, indicando che è stato eseguito correttamente. Successivamente, tenta di eseguire il comando `lskdf`, che non esiste, quindi restituisce il codice di uscita 127, che indica un errore (comando non trovato).In seguito, lo script termina con il codice di uscita 113,  che può essere utilizzato per rappresentare una condizione personalizzata.
+#   Exit / exit status
+
+This script prints "hello" and shows the exit code 0 from the echo command, indicating that it executed successfully.
+Next, it attempts to run the command lskdf, which does not exist, so it returns the exit code 127, indicating an error (command not found).
+Finally, the script exits with the exit code 113, which can be used to represent a custom condition.
+
+

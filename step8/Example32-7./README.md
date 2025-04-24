@@ -1,2 +1,21 @@
-L'obiettivo principale dello script è di far visualizzare la barra di progresso.Questo script fa partire un processo in backgorund che genera ogni secondo un ".",  per mezzo di un ciclo infinito while True.Con ^C viene lanciato  il seguente comando: trap  "echo !; kill -USR1 $pid; wait $pid"  EXIT.Questo comando manda un segnale a SIGUSR1 che termina il processo con trap "exit", interrompendo il ciclo infinito.
-Se si prova a commentare la riga di comando riportata in precedenza, il ciclo non verrà più interrotto attraverso ^C dato che SIGUSR1 non riceverà più alcun segnale obbligando cosi l'interruzione manuale attraverso il comando kill.
+# A Simple Implementation of a Progress Bar
+
+## Description:
+
+The main objective of the script is to display the progress bar. This script starts a background process that generates a "." every second using an infinite while True loop. When pressing ^C, the following command is triggered:
+trap "echo !; kill -USR1 $pid; wait $pid" EXIT.
+
+This command sends a SIGUSR1 signal that terminates the process with trap "exit", interrupting the infinite loop.
+
+If you try to comment out the previously mentioned command, the loop will no longer be interrupted with ^C because SIGUSR1 will no longer receive any signal, thus requiring manual interruption via the kill command.
+
+
+
+
+
+
+
+
+
+
+

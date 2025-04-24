@@ -1,2 +1,10 @@
-Il seguente script ha come obiettivo quello di printare i primi 3 parametri e ildecimo.Lo script stamperebbe riga per riga il valore dei parametri messi a condizione che ci siano 10 parametri.Nel 
-caso che non gli si dia alcun parametro o che i paramatri inseriti siano meno di 10, viene stampato: "This script needs at least $MINPARAMS command-line arguments!".
+# Positional Parameters
+
+## Description
+
+The purpose of the following script is to print the first three parameters and the tenth one. The script will print the value of each of these parameters line by line, provided that there are at least 10 parameters.
+
+If no parameters are given, or if fewer than 10 parameters are provided, it prints:
+"This script needs at least $MINPARAMS command-line arguments!".
+
+

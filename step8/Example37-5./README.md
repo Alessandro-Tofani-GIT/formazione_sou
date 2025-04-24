@@ -1,5 +1,6 @@
 #  A simple address database
 
+## Description 
 
 This script uses an associative array to store the addresses of three people, where the names (Charles, John, Wilma) are the keys and the addresses are the values. After storing the data in the array, the script prints each person's address.
 

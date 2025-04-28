@@ -1,0 +1,107 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+    
+Vagrant.configure("2") do |config|
+    # Creazione della macchina virtuale con il box "ubuntu/jammy64"
+  config.vm.define "ubuntu" do |ubuntu|
+    ubuntu.vm.box = "ubuntu/jammy64"
+
+    # Configurazione della rete privata
+    config.vm.network "private_network", ip: "192.168.33.10"
+
+    # Provisioning della macchina
+    config.vm.provision "shell", inline: <<-SHELL
+      # Aggiorna i pacchetti e installa Apache
+      apt-get update
+      apt-get install -y apache2
+
+      # Scrivi l'HTML nel file di index.html
+      echo "<!DOCTYPE html>
+<html lang=\"en\">
+<head>
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <title>Welcome to DevOps Everywhere</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+            color: #333;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+        }
+        main {
+            padding: 20px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        .content-section {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .content-section h2 {
+            font-size: 2em;
+            color: #4CAF50;
+        }
+        .content-section p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DevOps Everywhere</h1>
+    </header>
+
+    <main>
+        <div class=\"content-section\">
+            <h2>Obiettivo del Progetto</h2>
+            <p>In questo progetto, l'obiettivo è creare un'infrastruttura DevOps utilizzando Vagrant e uno dei diversi strumenti di provisioning, come Shell Scripting, Puppet, Ansible, Chef, o simili. La macchina virtuale che andremo a configurare sarà una macchina Linux di vostra scelta, con l'importante caratteristica di essere completamente portabile.</p>
+        </div>
+
+        <div class=\"content-section\">
+            <h2>Creare il Vostro Ambiente</h2>
+            <p>Il progetto consiste nella creazione di una macchina virtuale utilizzando Vagrant. Una volta eseguito il comando <code>vagrant up</code>, la macchina sarà pronta per essere utilizzata. Il vostro compito sarà scegliere cosa far fare alla macchina. Può essere qualsiasi cosa, ma deve essere portabile e facilmente riproducibile su altri sistemi.</p>
+        </div>
+
+        <div class=\"content-section\">
+            <h2>Bonus Creativo</h2>
+            <p>Non si tratta solo di configurare una macchina, ma di farlo con fantasia. Potete configurare un server web, una web radio, o qualsiasi altra applicazione che vi venga in mente. L'importante è che il progetto sia semplice e portabile, ma con un tocco di creatività che possa colpire chi analizzerà il vostro lavoro!</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 DevOps Everywhere. All rights reserved.</p>
+    </footer>
+</body>
+</html>" > /var/www/html/index.html
+
+      # Riavvia Apache per applicare le modifiche
+      systemctl restart apache2
+    SHELL
+  end
+end

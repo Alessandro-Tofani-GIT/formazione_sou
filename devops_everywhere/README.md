@@ -21,7 +21,7 @@ Durante la fase di provisioning, il sistema esegue automaticamente:
 
 1. Aggiornamento della lista dei pacchetti (`apt-get update`).
 2. Installazione del server web Apache (`apt-get install -y apache2`).
-3. Scrittura di una pagina HTML personalizzata, completa di struttura, stile e contenuti testuali.
+3. Scrittura di una pagina HTML personalizzata.
 4. Riavvio del servizio Apache per applicare le modifiche e rendere visibile la pagina.
 
 ---

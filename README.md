@@ -1,17 +1,33 @@
-# Academy DevOps Track 1 Exercises
+# Esercizi Academy DevOps Track 1
+---
+## Benvenuto in formazione_sou
 
-## Welcome to formazione_sou
+In questo repository ho pubblicato gli esercizi presenti in Track 1 su cui ho lavorato.
 
-In this repository, I published the track exercises I worked on.
+---
 
 ### Ping_pong
 
-Inside the ping_pong directory, there exists an exercise that implements the ping-pong function. When one container is active, the other is inactive. Subsequently, the active container is deactivated, and the previously inactive container is activated.
+All'interno della directory ping_pong è presente un esercizio che simula un comportamento "ping-pong" tra due container. Il meccanismo prevede che, in ogni momento, solo uno dei due container sia attivo mentre l'altro resta inattivo. L'alternanza tra i due avviene automaticamente grazie a un cron job, che verifica l'orario ogni minuto.
+Nei minuti pari, il primo container viene avviato (se non è già attivo) e il secondo viene fermato.
+Nei minuti dispari, accade il contrario: il primo container viene fermato e il secondo avviato.
+
+---
 
 ### Step8
 
-In the Step8 directory, I have provided comments explaining the functionality of each script.
+Nella directory `Step8`, ho aggiunto dei commenti che spiegano il funzionamento di ciascuno script.
+
+---
 
 ### Devops_everywhere
 
-This Vagrantfile sets up a virtual machine with Ubuntu, configures a private network, installs Apache, and creates a simple HTML page. It then restarts Apache to apply the changes and serve the page.
+All'interno della directory Devops_everywhere è presente un Vagrantfile che automatizza la creazione e configurazione di una macchina virtuale basata su Ubuntu. Questo file Vagrant esegue una serie di operazioni per preparare un ambiente web funzionante:
+
+- Crea una macchina virtuale Ubuntu utilizzando Vagrant.
+- Configura una rete privata, rendendo la VM accessibile localmente tramite un indirizzo IP specifico.
+- Installa Apache, il server web open-source, se non è già presente.
+- Genera una pagina HTML che contiene il testo "Devops_Everywhere" come contenuto visibile.
+- Riavvia il servizio Apache per applicare tutte le modifiche e rendere la pagina accessibile tramite il browser.
+
+

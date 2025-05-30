@@ -2,7 +2,7 @@
 ---
 ## Benvenuto in formazione_sou
 
-In questo repository ho pubblicato gli esercizi presenti in Track 1 su cui ho lavorato.
+In questo repository sono stati pubblicati gli esercizi svolti durante il percorso formativo presso l'Academy di Sourcesense. I contenuti presenti all'interno delle cartelle indicate fanno riferimento agli esercizi proposti nella Track 1.
 
 ---
 
@@ -16,7 +16,7 @@ Nei minuti dispari, accade il contrario: il primo container viene fermato e il s
 
 ### Step8
 
-Nella directory `Step8`, ho aggiunto dei commenti che spiegano il funzionamento di ciascuno script.
+Nella directory Step8 sono stati aggiunti file README.md contenenti commenti tecnici volti a descrivere il funzionamento di ciascuno script. Questa documentazione esterna è finalizzata a migliorare la comprensione del codice.
 
 ---
 

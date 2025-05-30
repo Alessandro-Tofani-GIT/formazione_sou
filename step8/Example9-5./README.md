@@ -1,9 +1,21 @@
-# Am I root?
+# Verifica se sei Root o No in Bash
 
-## Description
+## Descrizione
 
-The following scripts both have the same goal: to check if the user is root.
+Questo script in **Bash** è progettato per verificare se l'utente che esegue lo script ha privilegi da **root**. Lo script esegue questa verifica in due modi:
+1. Controlla l'UID dell'utente.
+2. Confronta il nome dell'utente con "root".
 
-In the first case, the script compares the user's $UID (the user ID of the one running the script) with $ROOT_UID. If the -eq condition is true, it prints "You are root".
+Se l'utente ha privilegi da root (UID 0 o nome utente "root"), lo script stamperà un messaggio che conferma che l'utente è root. Altrimenti, verrà stampato un messaggio che afferma che l'utente è un "utente ordinario".
 
-In the second script, the purpose is the same, but instead of comparing user IDs, it compares $ROOTUSER_NAME with $username. If they match, the user is identified as root.
+## Funzionamento dello Script
+
+1. **Verifica tramite UID**:
+   Il primo controllo confronta l'UID dell'utente con `0`, che è l'UID riservato per l'utente root. Se il confronto è vero, significa che l'utente è root.
+
+2. **Verifica tramite nome utente**:
+   Il secondo controllo verifica se il nome dell'utente corrente è "root" utilizzando il comando `id -nu` o `whoami`. Se il nome dell'utente è root, viene confermato che l'utente è root.
+
+## Conclusioni
+
+Questo script è un esempio di come verificare se un utente ha privilegi da root in Bash

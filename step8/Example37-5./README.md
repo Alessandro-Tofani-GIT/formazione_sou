@@ -1,11 +1,30 @@
-#  A simple address database
+# Un semplice database di indirizzi
 
-## Description 
+## Descrizione
 
-This script uses an associative array to store the addresses of three people, where the names (Charles, John, Wilma) are the keys and the addresses are the values. After storing the data in the array, the script prints each person's address.
+Questo script utilizza un array associativo per memorizzare gli indirizzi di tre persone. In particolare, i nomi (Charles, John, Wilma) sono le chiavi, mentre gli indirizzi sono i valori associati. Dopo aver memorizzato i dati nell'array, lo script stampa l'indirizzo di ogni persona.
 
-At the end of the script, using the command echo ${!address[*]}, a list of all the keys in the array — that is, the names of the people — is printed.
+Alla fine dello script, viene utilizzato il comando `echo ${!address[*]}` per stampare una lista di tutte le chiavi nell'array, ovvero i nomi delle persone.
 
+## Funzionamento dello Script
 
+1. **Creazione dell'array associativo**: 
+   Lo script crea un array associativo in cui le chiavi sono i nomi (Charles, John, Wilma) e i valori sono gli indirizzi corrispondenti.
 
+2. **Stampa degli indirizzi**: 
+   Una volta che i dati sono stati memorizzati, lo script stampa l'indirizzo di ciascuna persona.
+
+3. **Stampa delle chiavi**: 
+   Alla fine dello script, con il comando `echo ${!address[*]}`, vengono visualizzati tutti i nomi (le chiavi dell'array).
+
+## Requisiti
+
+Lo script richiede un ambiente di shell che supporti gli array associativi, come **Bash**.
+
+## Esecuzione dello Script
+
+Per eseguire lo script, basta lanciare il comando:
+
+```bash
+./address_database.sh
 
